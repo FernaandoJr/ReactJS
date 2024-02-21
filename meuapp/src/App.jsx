@@ -5,46 +5,43 @@ class App extends Component{
   constructor(props){
     super(props);
     this.state = {
-      nome: "",
-      email: "",
-      senha: "",
-      error: ''
+      form:{
+        nome: '',
+        email: '',
+        senha: '',
+      }
     }
 
-    this.cadastrar = this.cadastrar.bind(this);
+    this.dadosForm = this.dadosForm.bind(this)
 
   }
 
-
-  cadastrar(event){
-    const {nome, email, senha } = this.state;
-
-    if(nome !== '' && email !== '' && senha !== ''){
-      alert(`Nome: ${nome}\nE-mail: ${email}\nSenha: ${senha}`)
-    } else{
-      this.setState({error: "Ops, faltou alguma coisa!"})
-    }
-    event.preventDefault();
+  dadosForm(event){
+    let form = this.state.form
+    form[event.target.name] = event.target.value
+    this.setState({form: form})
   }
   
   render(){
       return(
         <div>
             <h1>Novo usuário</h1>
-            <form onSubmit={this.cadastrar}>
               {this.state.error && <p>{this.state.error} </p> }
               <label>Nome:</label>
-            <input type="text" value={this.state.nome}  
-              onChange={(event)=>{ this.setState({nome: event.target.value})}}/> <br />
+            <input type="text" value={this.state.nome} name='nome'
+              onChange={this.dadosForm}/> <br />
               <label>E-mail:</label>
-            <input type="email" value={this.state.email}  
-              onChange={(event)=>{ this.setState({email: event.target.value})}}/> <br />
+            <input type="email" value={this.state.email}  name='email'
+              onChange={this.dadosForm}/> <br />
               <label>Senha:</label>
-            <input type="password" value={this.state.senha}  
-              onChange={(event)=>{ this.setState({senha: event.target.value})}}/> <br />
+            <input type="password" value={this.state.senha}  name='senha'
+              onChange={this.dadosForm}/> <br />
 
-              <button type='submit'>Cadastrar</button>
-            </form>
+            <div>
+            <p>{this.state.form.nome}</p>
+            <p>{this.state.form.email}</p>
+            <p>{this.state.form.senha}</p>
+            </div>
         </div>
       )
     }
