@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Feed from './components/Feed'
 
 class App extends Component{
 
@@ -6,35 +7,25 @@ class App extends Component{
     super(props);
 
     this.state = {
-      status: false,
-      nome: "Fernando"
+      List: [
+        {id: 1, username: "Fernando", curtidas: 130, comentarios: 30},
+        {id: 2, username: "Murilo", curtidas: 10, comentarios: 2},
+        {id: 3, username: "Marcos", curtidas: 68, comentarios: 15},
+        {id: 4, username: "Roberto", curtidas: 1, comentarios: 1}
+      ]
     }
-    this.entrar = this.entrar.bind(this)
-    this.sair = this.sair.bind(this)
-    
 
-  }
-
-  entrar(){
-    this.setState({status: true})
-  }
-  sair(){
-    this.setState({status: false})
   }
 
   render(){
       return(
         <div>
-          {this.state.status ?
-          <div>
-            <h1>Bem vindo {this.state.nome}</h1>
-            <button onClick={this.sair}>Sair</button>
-          </div> :
-          <div>
-            <h1>Bem vindo deconhecido</h1>
-            <button onClick={this.entrar}>Sair</button>
-          </div>
-          }
+          {this.state.List.map((item) =>{
+            return(
+              <Feed id={item.username} username={item.username} curtidas={item.curtidas} comentarios={item.comentarios} />
+            )
+          })}
+
         </div>
       )
     }
