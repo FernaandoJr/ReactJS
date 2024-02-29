@@ -20,6 +20,7 @@ class App extends Component{
     let numeroAleatorio = Math.floor(Math.random() * this.frases.length)
     state.textoFrase = '"'+ this.frases[numeroAleatorio] + '"'
     this.setState(state)
+    
   }
 
   render(){
