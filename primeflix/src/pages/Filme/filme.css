@@ -1,0 +1,17 @@
+.filme-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.title{
+
+}
+
+
+
+.filme-info img{
+    height: 500px;
+
+}
